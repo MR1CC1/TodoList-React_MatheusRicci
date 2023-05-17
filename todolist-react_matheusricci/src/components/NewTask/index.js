@@ -1,20 +1,19 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import "./styles.css"
 
 const NewTask = ({ onNewTask }) => {
+  const ESCAPE_KEY = 27;
+  const ENTER_KEY = 13;
 
-const ESCAPE_KEY = 27;
-const ENTER_KEY = 13;
+  const [valueInput, setValueInput] = useState("");
 
-const [valueInput, setValueInput] = useState("");
-
-
-const delTask = () => {
+  const delTask = () => {
     setValueInput("");
   };
 
-const onChange = (event) => {
+  const onChange = (event) => {
     setValueInput(event.target.value);
   };
 
@@ -27,27 +26,25 @@ const onChange = (event) => {
   };
 
   const submit = () => {
-    if( onNewTask ) {
-        onNewTask(valueInput)
-        delTask();
+    if (onNewTask) {
+      onNewTask(valueInput);
+      delTask();
     }
   };
 
-
-
   return (
-        <input
-          className="new-task"
-          placeholder="Digite aqui sua Tarefa..."
-          value={valueInput}
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-        />
-  )
-}
+    <input
+      className="new-task"
+      placeholder="Digite aqui sua Tarefa..."
+      value={valueInput}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+    />
+  );
+};
 
 NewTask.propTypes = {
-    onNewTask: PropTypes.func.isRequired,
-}
+  onNewTask: PropTypes.func.isRequired,
+};
 
-export default NewTask
+export default NewTask;
