@@ -1,5 +1,6 @@
 import React from 'react'
-import { useState, ReactPropTypes } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 
 const NewTask = ({ onNewTask }) => {
 
@@ -45,8 +46,8 @@ const onChange = (event) => {
   )
 }
 
-NewTask.ReactPropTypes = {
-    onNewTask: ReactPropTypes.func.isRequired,
+NewTask.propTypes = {
+    onNewTask: PropTypes.func.isRequired,
 }
 
 export default NewTask
