@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import { MdDelete } from "react-icons/md";
+import NewTask from "./components/NewTask";
 
 import "./App.css";
 
 const App = () => {
-  const ESCAPE_KEY = 27;
-  const ENTER_KEY = 13;
-
   const [tasks, setTasks] = useState([]);
-  const [valueInput, setValueInput] = useState("");
 
-  const delTask = () => {
-    setValueInput("");
-  };
-
-  const submit = () => {
+  const onNewTask = (valueInput) => {
     setTasks([
       ...tasks,
       {
@@ -23,20 +16,6 @@ const App = () => {
         checked: false,
       },
     ]);
-
-    delTask();
-  };
-
-  const onChange = (event) => {
-    setValueInput(event.target.value);
-  };
-
-  const onKeyDown = (event) => {
-    if (event.which === ENTER_KEY) {
-      submit();
-    } else if (event.which === ESCAPE_KEY) {
-      delTask();
-    }
   };
 
   const onToggle = (task) => {
@@ -65,13 +44,7 @@ const App = () => {
         </h1>
       </header>
       <section className="main">
-        <input
-          className="new-task"
-          placeholder="Digite aqui sua Tarefa..."
-          value={valueInput}
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-        />
+        <NewTask onNewTask={onNewTask} />
         <ul className="task-list">
           {tasks.map((task) => (
             <li key={task.id.toString()}>
